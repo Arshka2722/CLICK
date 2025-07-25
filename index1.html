@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Surprise for Anushka 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      height: 100%;
+      background: radial-gradient(circle at top, #ffe1f2 0%, #ffd6e8 100%);
+      color: #6b0f3c;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: url('https://i.ibb.co/z8v1WpK/star-bg.png') repeat;
+      animation: moveStars 100s linear infinite;
+      z-index: -1;
+      top: -50%;
+      left: -50%;
+      opacity: 0.4;
+    }
+
+    @keyframes moveStars {
+      from {transform: translate(0, 0);}
+      to {transform: translate(50%, 50%);}
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      text-align: center;
+      margin-top: 2rem;
+      color: #e91e63;
+      text-shadow: 0 0 10px #ff87ab;
+    }
+
+    .letter {
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ffa3c2;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    #typedText::after {
+      content: "|";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .surprise-btn {
+      display: block;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      background-color: #ff69b4;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .surprise-btn:hover {
+      background-color: #e91e63;
+      transform: scale(1.05);
+    }
+
+    #popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: #ff1493;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px #ff8ecf, 0 0 60px #ffb6e0;
+      font-size: 1.5rem;
+      z-index: 999;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      animation: sparkle 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes sparkle {
+      from { box-shadow: 0 0 20px #ffb6e0, 0 0 40px #ffa3c2; }
+      to { box-shadow: 0 0 40px #ffcce5, 0 0 80px #ffb6e0; }
+    }
+
+    .anushka-name {
+      font-size: 3rem;
+      color: #ff1493;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.7); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .emoji {
+      position: fixed;
+      font-size: 1.8rem;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.8;
+      z-index: 10;
+    }
+
+    @keyframes floatUp {
+      0% { bottom: -30px; opacity: 0.8; }
+      100% { bottom: 100vh; opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Hey Anushka 💖</h1>
+
+  <div class="letter">
+    <p id="typedText"></p>
+  </div>
+
+  <button class="surprise-btn" onclick="showSurprise()">Click Me for a Surprise! 🎁</button>
+
+  <div id="popup">
+    <div class="anushka-name">for My Bbu 💕</div>
+    <p>Aaj se tum jo jaise bologi vo krunga jitne bje bologi bbu sojaunga aur uth jaunga </p>
+  </div>
+
+  <script>
+    const message = `Dear Anushka,\n\n i am very Sorry for my recent days behaviour and also very sorry for yelling at you every time... bohot ho gyi english ab bolunga to tumko fake lgega yrr bbu i am very sorry yr mei har chezz ki gussa tumse krna lga hu sorry bbu aaj maine din mein bohot socha sorry bbu aise behaviour k liye mein tumhara pyara bbu hu iloveyou mela pyaala bacha tumko sorry bolne k liye shyd yhi acha tareeka tha jisse tumhe ye na lge ki mein tumse pyaar nhi krta ya efforts nhi krta hu bbu mein sab krunga bbu sorry bbu kal raat k liye bhi... ilove you sooooo much bbu. 💖\n\nForever yours.`;
+
+    let index = 0;
+    const typeSpeed = 40;
+    const textContainer = document.getElementById("typedText");
+
+    function type() {
+      if (index < message.length) {
+        textContainer.innerHTML += message.charAt(index);
+        index++;
+        setTimeout(type, typeSpeed);
+      }
+    }
+
+    function showSurprise() {
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function createFloatingEmoji() {
+      const emojis = ["💖", "💕", "💘", "💝", "💗", "💞"];
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.bottom = "-30px";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 5000);
+    }
+
+    setInterval(createFloatingEmoji, 800);
+    type();
+  </script>
+</body>
+
+</html>
